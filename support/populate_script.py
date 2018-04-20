@@ -23,5 +23,5 @@ class ExecuteMany:
         self.connection_obj.commit()
 
 
-conn_0bj = ExecuteMany('../Src/user.db') # connect to existing database to populate User table
+conn_0bj = ExecuteMany('../secondb') # connect to existing database to populate User table
 conn_0bj.insert_many('MOCK_DATA.json')  # insert data by providing data file path 

@@ -1,12 +1,14 @@
-from DbConnectionModule import DbConnection
+try:
+    from DbConnectionModule import DbConnection
+except:
+    from Src.DbConnectionModule import DbConnection
 
-
-class CreateTable:
+class CRUDTable:
     """
     Table Creation, Value insertion, Updating and Deletion of User Table
     """
 
-    def __init__(self, db_name='test1.db'):
+    def __init__(self, db_name):
 
         self.connection_obj = DbConnection(db_name)
         self.cursor_obj = self.connection_obj.get_cursor_obj()
@@ -16,15 +18,15 @@ class CreateTable:
         create_statement = """CREATE TABLE User
         (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            Name char(30),
-            Email text Not NUll UNIQUE,
-            Phone varchar(15) NOT NULL UNIQUE,
-            DOB char(10),
-            Gender char(6) NOT NULL CHECK(Gender IN('Male', 'Female', 'Others')),
-            Latitude varchar(100),
-            Longitude varchar(100),
-            Image varchar,
-            Social_Media text
+            name char(30),
+            email text Not NUll UNIQUE,
+            phone varchar(15) NOT NULL,
+            dob char(10),
+            gender char(6) NOT NULL CHECK(Gender IN('Male', 'Female', 'Others')),
+            latitude varchar(100),
+            longitude varchar(100),
+            image varchar,
+            social_media text
         )"""
         self.cursor_obj.execute(create_statement)
     
@@ -48,22 +50,22 @@ class CreateTable:
     def update_into_table(self, **kwargs): #  Update User details
         try:
             update_statement = " UPDATE User SET\
-                    Name='{name}',\
-                    DOB='{dob}', Gender='{gender}', Latitude='{latitude}',\
-                    Longitude='{longitude}', Image='{image}', SocialMedia='{social_media}'\
-                    WHERE Email='{email}'".format(**kwargs)
+                    name='{name}',\
+                    dob='{dob}', gender='{gender}', latitude='{latitude}',\
+                    longitude='{longitude}', image='{image}', social_media='{social_media}'\
+                    WHERE email='{email}'".format(**kwargs)
             self.cursor_obj.execute(update_statement)
             self.connection_obj.commit()
         except Exception as e:
             print(e)
     
     def retrieve_user(self, **kwargs):
-        retrieve_statement = "SELECT * FROM User WHERE Email='{email}'".format(**kwargs)
+        retrieve_statement = "SELECT * FROM User WHERE email='{email}'".format(**kwargs)
         self.cursor_obj.execute(retrieve_statement)
         
     def delete_user(self, **kwargs):
         try:
-            delete_statement = "DELETE FROM User WHERE Email='{email}'".format(**kwargs)
+            delete_statement = "DELETE FROM User WHERE email='{email}'".format(**kwargs)
             self.cursor_obj.execute(delete_statement)
         except Exception as e:
             print(e)
@@ -72,10 +74,19 @@ class CreateTable:
         drop_statement = "DROP TABLE IF EXISTS User"
         self.cursor_obj.execute(drop_statement)
 
-  
-# a = CreateTable('test1.db')
+
+# from heap_sort import heapify
+# a = CRUDTable() # initialization testing and populate 200 rows with another script 
 # a.initialize_table()
 # a.insert_into_table(name='lakal', email='bindeep', phone='kalka', gender='Male', dob='afaf', latitude='1234', longitude='09876', image='kakakka', social_media='uauau')
 # a.update_into_table(name='lfakal', email='bindeep', phone='kffalka', gender='Male', dob='affaf', latitude='1234', longitude='09876', image='kakakka', social_media='uafuau')
 # a.delete_user(email='bindeep')
 # a.drop_table()
+
+# a = CRUDTable()
+# b = a.cursor_obj.execute("SELECT * FROM TestSort").fetchall()
+
+# def sorting(key):
+#     name_list = list()
+#     for i in b:
+#         name_list.append(i[0])

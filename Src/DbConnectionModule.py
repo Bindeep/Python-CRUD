@@ -9,10 +9,10 @@ class DbConnection:
      Create a database connection to a database.
     """
 
-    def __init__(self, db_name):
+    def __init__(self, db_name='user.db'):
 
         try:
-            self.connection_obj = sqlite3.connect(f'../Database/{db_name}')
+            self.connection_obj = sqlite3.connect(db_name)
 
         except Error:
             logging.error(f'Connection Unsuccessful with {Error}')
@@ -27,3 +27,6 @@ class DbConnection:
     def close_connection(self):
         if self.connection_obj:
             self.connection_obj.close()
+
+a = DbConnection('a.db')
+a.get_cursor_obj()
