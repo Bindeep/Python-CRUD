@@ -1,6 +1,13 @@
 import sqlite3
 from sqlite3 import Error
 import logging
+import psycopg2
+import os
+
+hostname = '127.0.0.1'
+username = 'cruduser'
+password = 'admin1234'
+database_name = 'cruddb'
 
 
 class DbConnection:
@@ -9,10 +16,13 @@ class DbConnection:
      Create a database connection to a database.
     """
 
-    def __init__(self, db_name='user.db'):
+    def __init__(self, database):
 
         try:
-            self.connection_obj = sqlite3.connect(db_name)
+            if database == "sqlite3":
+                self.connection_obj = sqlite3.connect(f'../Database/sqlite3')
+            else:
+                self.connection_obj = psycopg2.connect(host=hostname, user=username, password=password, dbname=database_name)
 
         except Error:
             logging.error(f'Connection Unsuccessful with {Error}')
@@ -27,6 +37,3 @@ class DbConnection:
     def close_connection(self):
         if self.connection_obj:
             self.connection_obj.close()
-
-a = DbConnection('a.db')
-a.get_cursor_obj()

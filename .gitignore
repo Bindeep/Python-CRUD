@@ -1,4 +1,9 @@
 __pycache_
 .vscode*
 *.db
-*.swp_
+*.swp
+*.json
+populate*
+dbpostgres.py
+firstdb
+secondb

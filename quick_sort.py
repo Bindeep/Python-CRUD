@@ -6,18 +6,16 @@ from collections import namedtuple
 
 class QuickSort:
 
-    def __init__(self, db_name='secondb'):
-        self.connection_obj = CRUDTable(db_name)
-        self.array = self.connection_obj.get_all()
-    
-    def resultset(self):
+    """ make dictionary from tuples so that fields can be sorted with the help of dictionary keys"""
+    def resultset(self, array):
+
         named_tuple = namedtuple(
         'data',
         ['id', 'name', 'email', 'phone', 'dob', 'gender', 'latitude', 'longitude', 'image', 'social_media']
         )
         return [dict(named_tuple(
             user_detail[0], user_detail[1], user_detail[2], user_detail[3], user_detail[4], user_detail[5], user_detail[6], user_detail[7], user_detail[8], user_detail[9]
-            )._asdict()) for user_detail in self.array]
+            )._asdict()) for user_detail in array]
     
     def sort(self, array, key=None):
         less = list()
@@ -51,8 +49,32 @@ class QuickSort:
                 return array
 
 
-obj = QuickSort()
-data = obj.resultset()
-sorted_data = obj.sort(data, key='name')
-for _ in sorted_data:
-    print(_['name'])
+# obj = QuickSort('postgres')
+# data = obj.resultset()
+# sorted_data = obj.sort(data, key='email')
+# for _ in sorted_data:
+#     print(_['email'])
+
+# class MkUnique:
+#     """
+#     Check uniquness of value and make it unique
+#     """
+    
+#     def unique(self, array, key):
+#         i = 0
+#         total_loop = len(array) - 1
+#         while i<total_loop:
+#             if a[i][key] == a[i+1][key]:
+#                 a[i][key] += f'{i+1}'
+#                 i += 1
+#             else:
+#                 i += 1
+
+
+
+
+# a = [{'name': 'a'}, {'name': 'a'}, {'name': 'a'}]
+
+# obj = MkUnique()
+# obj.unique(a, 'name')
+# print(a)

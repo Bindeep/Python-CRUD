@@ -1,0 +1,135 @@
+CGI PROGRAMMNG IN PYTHON
+
+CGI Introduction
+Common Gateway Interface(CGI) is any program that is designed to accept and return the data between webservers and programs written in any Programming language. It is Server side solution because processing occurs on the web server.
+
+CGI In Python
+--Scripts is invoked by HTTP server, that invoke user input through HTML<form> or <ISINDEX> element.
+--Contains two sections first header section and second html section
+	Header Section
+		print('Content_Type: 'text/html'')
+		print() #expected blank line
+
+	Html section
+		print("<p> Hello World </p>")
+
+
+
+HTML VERBS
+
+Usually nouns that define Actions to be performed in desired resources.
+
+GET
+---Should be use be retrieve data as response.
+SYNTAX: GET /index.html
+
+HEAD
+---like GET it asks for response but doesnot contain response body like GET.
+SYNTAX: HEAD /index.html
+
+POST
+---Submit some data to given resource that that changes the state of server. Usually through html forms
+SYNTAX: POST /index.html
+
+PUT
+---Replace current representation with desired data.
+SYNTAX: PUT /new.html HTTP/1.1 
+
+DELETE
+--delete specified resource.
+SYNTAX: DELETE /file.html HTTP/1.1 
+
+CONNECT
+---Establish communication with server. Can be used to access server that use https
+SYNTAX: CONNECT www.example.com:443 HTTP/1.1
+
+OPTIONS
+---Provides various communication option for tagret resource like GET, HEAD, PUT, POST.
+SYNTAX:OPTIONS /index.html HTTP/1.1
+		OPTIONS * HTTP/1.1
+ 
+TRACE
+---Loop back user input to user .Used for debugging purpose.
+
+PATCH
+---Partial modification to the reousrces.Unlike put that replace the entire representatio with request payload
+SYNTAX: PATCH /file.txt HTTP/1.1
+
+
+
+REST Vs SOAP API
+
+
+REST
+--Representational State Transfer
+--Allows greater variety of data formats
+--Better support for browser clients
+--Superior performance (caching).
+--Mostly used by giants tech.
+--Coupled with json so faster and use less bandwidth
+--Easy to integrate with websites
+
+
+SOAP
+--Single Object Access Protocol
+--Only works with XML
+--Greater Transaction Realiability
+--Useful for web services that support complex operations like(compelex:security, trust)
+
+
+Dictionary  to json
+dictionary = {'name': 'bindeep', 'id': 1}
+json_obj = json.dumps(a, default=str)  #serialize fields
+
+
+Json to Dictionary
+dictionary = json.loads(json_obj) #deserialize fields
+
+
+
+ECMA5 vs ECMA6
+Some new functions of ECMA6 are:
+
+--Variable Declaration
+	let ---generally for local scope
+	var ---generally for global scope
+
+--Arrow Function
+	 ES5 equivalent: var titles = books.map(function(item) { return item.title; });
+	 let titles = books.map( item => item.title );
+
+--Strings Methods
+	'my string'.startsWith('my') //True
+	'my string'.endsWith('my') //False
+	'my string'.includes('str') //True
+	'my '.repeat(3); // 'my my my '
+
+--TEMPLATE LITERAL
+	let name = 'ram'
+	console.log(This is ${name}.);
+	##also can be used for multiline strings(like docstring in python)
+
+--Arrays
+	some new static class methods
+	[5, 1, 10, 8].find(n => n === 10) // 10
+	[5, 1, 10, 8].findIndex(n => n === 10) // 2
+	[0, 0, 0].fill(7) // [7, 7, 7]
+
+--Math
+	Math.sign returns the sign of a number as 1, -1 or 0.
+	Math.trunc returns the passed number without fractional digits.
+	Math.cbrt returns the cube root of a number.
+		Math.sign(5); // 1
+		Math.sign(-9); // -1
+		Math.trunc(5.9); // 5
+		Math.trunc(5.123); // 5
+		Math.cbrt(64); // 4
+
+--Spread Operator
+	expand elements of an array 
+	let values = [1, 2, 4];
+	let some = […values, 8]; // [1, 2, 4, 8]
+
+--Destructuring
+	extract data from objects or arrays
+	let [x, y] = [1, 2]; // x = 1, y = 2
