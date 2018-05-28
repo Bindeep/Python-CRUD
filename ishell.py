@@ -1,6 +1,6 @@
 from cmd import Cmd
-from Src.table_crud import CRUDTable
-from Src.DbConnectionModule import DbConnection
+from src.table_crud import CRUDTable
+from src.DbConnectionModule import DbConnection
 from quick_sort import QuickSort
 from search_algorithms import BinarySearch 
 
@@ -92,8 +92,11 @@ class MyPrompt(Cmd):
 
     def do_update_data(self, *args):
         """Update user profile details."""
-        print("Provide data to update")
-        self.connection_obj.update_into_table(**self.__class__.populate_data())
+        print("Provide data to update :")
+        id_field = dict()
+        id_field['id'] = input("Provide id to update :")
+        values = {**id_field, **self.__class__.populate_data()}
+        self.connection_obj.update_into_table(**values)
         print("Data Update Successful")
 
     def do_delete_users(self, value=None):
