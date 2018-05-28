@@ -1,0 +1,27 @@
+#userprofile {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+body{
+    background: linear-gradient(to bottom,#ffffcc 0%, #ccffff 100%);
+}
+
+
+#userprofile td, #userprofile th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+#userprofile tr:nth-child(even){background-color: #f2f2f2;}
+
+#userprofile tr:hover {background-color: #ddd;}
+
+#userprofile th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
