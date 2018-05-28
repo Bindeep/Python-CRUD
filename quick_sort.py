@@ -1,7 +1,7 @@
 try:
     from table_crud import CRUDTable
 except:
-    from Src.table_crud import CRUDTable
+    from src.table_crud import CRUDTable
 from collections import namedtuple
 
 class QuickSort:
